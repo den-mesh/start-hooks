@@ -4,7 +4,17 @@ import Component from "./someComponent";
 import CardWrapper from "../../common/Card";
 import SmallTitle from "../../common/typografy/smallTitle";
 import Divider from "../../common/divider";
+import withLogin from "./withLogin";
+import withPropsStyles from "./withPropsStyles";
+import withFunction from "./withFuction";
+import SimpleComponent from "./simpleComponent";
+
 const HOCExample = () => {
+    const ComponentWithAuth = withLogin(Component);
+    const ComponentWithPropsStyle = withPropsStyles(Component);
+    const NewComponent = withPropsStyles(ComponentWithAuth);
+    const ComponentWithHoc = withFunction(SimpleComponent);
+
     return (
         <>
             <CardWrapper>
@@ -14,12 +24,21 @@ const HOCExample = () => {
             </CardWrapper>
             <CardWrapper>
                 <SmallTitle>2. Функциональный HOC</SmallTitle>
+                <Divider />
+                <ComponentWithAuth />
             </CardWrapper>
             <CardWrapper>
                 <SmallTitle>3. HOC With Styles and Props</SmallTitle>
+                <Divider />
+                <ComponentWithPropsStyle />
             </CardWrapper>
             <CardWrapper>
                 <SmallTitle>4. Composed HOC</SmallTitle>
+                <NewComponent />
+            </CardWrapper>
+            <CardWrapper>
+                <SmallTitle>5. HW</SmallTitle>
+                <ComponentWithHoc />
             </CardWrapper>
         </>
     );
